@@ -148,13 +148,25 @@
       console.log(monsters);
 
       const app = document.querySelector("#app");
+      // app.innerHTML = `
+      //   <div class="row">
+      //     ${monsters
+      //       .map(function (monster, index) {
+      //         return `
+      //           <div class="grid">
+      //             <img src="${monster.name}.svg" alt="${monster.alt}" />
+      //           </div>
+      //         `;
+      //       })
+      //       .join("")}
+      //   </div>`;
       app.innerHTML = `
         <div class="row">
           ${monsters
             .map(function (monster, index) {
               return `
                 <div class="grid">
-                  <img src="${monster.name}.svg" alt="${monster.alt}" />
+                  <img src="door.svg" alt="Door #{index + 1}" />
                 </div>
               `;
             })
