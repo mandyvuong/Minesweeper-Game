@@ -33,6 +33,12 @@
         height: auto;
         max-width: 100%;
       }
+
+      [data-monster] {
+        border: 3px solid transparent;
+        padding: 0;
+        background-color: transparent;
+      }
     </style>
   </head>
   <body>
@@ -166,7 +172,9 @@
             .map(function (monster, index) {
               return `
                 <div class="grid">
-                  <img src="door.svg" alt="Door #{index + 1}" />
+                  <button data-monster="#{index}">
+                    <img src="door.svg" alt="Door #{index + 1}" />
+                  </button>
                 </div>
               `;
             })
