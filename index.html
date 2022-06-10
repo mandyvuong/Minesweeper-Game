@@ -74,7 +74,6 @@
 
     <script>
       // The monsters and socks
-      // The monsters and socks
       let monsters = [
         {
           name: "monster1",
@@ -154,32 +153,42 @@
       console.log(monsters);
 
       const app = document.querySelector("#app");
-      // app.innerHTML = `
-      //   <div class="row">
-      //     ${monsters
-      //       .map(function (monster, index) {
-      //         return `
-      //           <div class="grid">
-      //             <img src="${monster.name}.svg" alt="${monster.alt}" />
-      //           </div>
-      //         `;
-      //       })
-      //       .join("")}
-      //   </div>`;
       app.innerHTML = `
-        <div class="row">
-          ${monsters
+				<div class="row">
+					${monsters
             .map(function (monster, index) {
               return `
-                <div class="grid">
-                  <button data-monster="#{index}">
-                    <img src="door.svg" alt="Door #{index + 1}" />
-                  </button>
-                </div>
-              `;
+							<div class="grid">
+								<button data-monster="${index}">
+									<img src="door.svg" alt="Door #${index + 1}" />
+								</button>
+							</div>
+						`;
             })
             .join("")}
-        </div>`;
+				</div>
+			`;
+
+      app.addEventListener("click", (event) => {
+        const monsterButton = event.target.closest("[data-monster]");
+
+        if (!monsterButton) {
+          return;
+        }
+
+        const monsterId = monsterButton.getAttribute("data-monster");
+        if (!monsters[monsterId]) {
+          return;
+        }
+
+        const { name, alt } = monsters[monsterId];
+
+        const newMonster = document.createElement("img");
+        newMonster.src = name + ".svg";
+        newMonster.alt = alt;
+
+        monsterButton.replaceWith(newMonster);
+      });
     </script>
   </body>
 </html>
