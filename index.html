@@ -169,6 +169,8 @@
 				</div>
 			`;
 
+      let found = 0;
+
       app.addEventListener("click", (event) => {
         const monsterButton = event.target.closest("[data-monster]");
 
@@ -182,12 +184,23 @@
         }
 
         const { name, alt } = monsters[monsterId];
+        if (name === "sock") {
+          window.location.href = "lost.html";
+          return;
+        }
+
+        found++;
+        if (found === monsters.length - 1) {
+          window.location.href = "won.html";
+        }
 
         const newMonster = document.createElement("img");
         newMonster.src = name + ".svg";
         newMonster.alt = alt;
+        newMonster.setAttribute("tabindex", -1);
 
         monsterButton.replaceWith(newMonster);
+        newMonster.focus();
       });
     </script>
   </body>
