@@ -109,6 +109,20 @@
       }
       shuffle(monsters);
       console.log(monsters);
+
+      const app = document.querySelector("#app");
+      app.innerHTML = `
+        <div class="row">
+          ${monsters
+            .map(function (monster, index) {
+              return `
+                <div class="grid">
+                  <img src="${monster}.svg" />
+                </div>
+              `;
+            })
+            .join("")}
+        </div>`;
     </script>
   </body>
 </html>
